@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">YaApp</string>
+    <string name="user">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="login">INICIAR SESIÓN</string>
 </resources>
