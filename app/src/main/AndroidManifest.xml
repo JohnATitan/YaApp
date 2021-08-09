@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YaApp">
         <activity
+            android:name=".presentation.activities.DashboardActivity"
+            android:exported="true" >
+        </activity>
+        <activity
             android:name=".presentation.activities.LoginActivity"
             android:exported="true" />
         <activity

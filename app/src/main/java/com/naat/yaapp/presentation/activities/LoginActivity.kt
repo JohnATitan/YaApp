@@ -1,5 +1,6 @@
 package com.naat.yaapp.presentation.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -45,7 +46,9 @@ class LoginActivity : AppCompatActivity(), LoginView {
     }
 
     override fun loginSucceed() {
-        Toast.makeText(this, "Si se pudo!?", Toast.LENGTH_SHORT).show()
+        val dashboard = Intent(this, DashboardActivity::class.java)
+        startActivity(dashboard)
+        finish()
     }
 
     override fun loginFailed(message: String) {
