@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
     }
 
     private fun initPresenter() {
-        presenter = LoginPresenter(this)
+        presenter = LoginPresenter(this, this)
     }
 
     private fun initListeners() {

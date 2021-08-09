@@ -1,15 +1,19 @@
 package com.naat.yaapp.domain.presenters
 
+import android.content.Context
 import com.naat.yaapp.data.external.configuration.ServiceListener
 import com.naat.yaapp.data.external.services.LoginService
+import com.naat.yaapp.data.internal.sharedpreferences.SessionPreferences
+import com.naat.yaapp.data.models.UserSession
 import com.naat.yaapp.presentation.activities.views.LoginView
 
-class LoginPresenter(private val view: LoginView) {
+class LoginPresenter(private val view: LoginView, private val context: Context) {
 
     fun login(userName: String, password: String) {
         if (validateFields(userName, password)) {
-            val loginService = LoginService(object : ServiceListener<Boolean, Boolean> {
-                override fun onServiceSucceed(t: Boolean) {
+            val loginService = LoginService(object : ServiceListener<UserSession, Boolean> {
+                override fun onServiceSucceed(userSession: UserSession) {
+                    SessionPreferences.setUserSession(userSession, context)
                     view.loginSucceed()
                 }
 
@@ -21,7 +25,6 @@ class LoginPresenter(private val view: LoginView) {
         }
     }
 
-
     private fun validateFields(userName: String, password: String): Boolean {
         if (userName.trim().isEmpty() || password.trim().isEmpty()) {
             view.loginFailed("Los campos son incorrectos")
@@ -29,5 +32,6 @@ class LoginPresenter(private val view: LoginView) {
         }
         return true
     }
+
 
 }
