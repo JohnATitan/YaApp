@@ -49,10 +49,18 @@
         tools:layout_editor_absoluteX="32dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/transparent"
+            android:digits="@string/valid_digits"
             android:hint="@string/user"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:nextFocusForward="@id/etPassword"
+            android:singleLine="true"
+            android:text="testnaat@na-at.com.mx"
             android:textColor="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,15 +79,22 @@
         app:startIconTint="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/transparent"
+            android:digits="@string/valid_digits"
             android:hint="@string/password"
+            android:imeOptions="actionDone"
             android:inputType="textPassword"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="56Forj2018."
             android:textColor="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/lar_margin"
@@ -88,12 +103,25 @@
         android:text="@string/login"
         app:layout_constraintTop_toBottomOf="@id/tiPassword" />
 
+    <ProgressBar
+        android:id="@+id/pbLoader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/med_margin"
+        android:digits="@string/valid_digits"
+        android:foregroundTint="@color/white"
+        android:indeterminateTint="@color/white"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnLogin" />
+
     <TextView
+        android:id="@+id/tvVersion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/lar_margin"
         android:textColor="@color/white"
-        android:text="Versión"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
