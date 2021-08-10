@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.naat.yaapp.data.models.Recharge
 import com.naat.yaapp.databinding.FragmentRechargeBinding
 import com.naat.yaapp.domain.presenters.fragments.RechargePresenter
+import com.naat.yaapp.domain.utils.Constant
 import com.naat.yaapp.presentation.activities.BuyRechargeActivity
 import com.naat.yaapp.presentation.dialogs.MoreRechargesDialog
 import com.naat.yaapp.presentation.adapters.RechargeAdapter
@@ -73,7 +74,7 @@ class RechargeFragment : Fragment(), RechargeView, RechargeListener, RechargeSel
             it.dismiss()
         }
         val buy = Intent(context, BuyRechargeActivity::class.java)
-        buy.putExtra("idRecharge", idRecharge)
+        buy.putExtra(Constant.ID_RECHARGE, idRecharge)
         startActivity(buy)
         requireActivity().finish()
     }
