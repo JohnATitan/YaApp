@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.naat.yaapp.databinding.FragmentDashboardBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.naat.yaapp.databinding.FragmentRechargeBinding
+import com.naat.yaapp.presentation.adapters.RechargeAdapter
 
-class PlaceholderFragment : Fragment() {
+class RechargeFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentRechargeBinding? = null
 
     private val binding get() = _binding!!
 
@@ -19,16 +20,20 @@ class PlaceholderFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentRechargeBinding.inflate(inflater, container, false)
         val root = binding.root
+
+        val rvRecharges = binding.rvRecharges
+        rvRecharges.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        rvRecharges.adapter = RechargeAdapter()
 
         return root
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(): PlaceholderFragment {
-            return PlaceholderFragment()
+        fun newInstance(): RechargeFragment {
+            return RechargeFragment()
         }
     }
 
