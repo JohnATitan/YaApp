@@ -8,7 +8,7 @@ import android.widget.Toast
 import com.naat.yaapp.BuildConfig
 import com.naat.yaapp.R
 import com.naat.yaapp.databinding.ActivityLoginBinding
-import com.naat.yaapp.domain.presenters.LoginPresenter
+import com.naat.yaapp.domain.presenters.activities.LoginPresenter
 import com.naat.yaapp.presentation.activities.views.LoginView
 
 class LoginActivity : AppCompatActivity(), LoginView {
@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
     }
 
     private fun initListeners() {
-        binding.btnLogin.setOnClickListener { button ->
+        binding.btnLogin.setOnClickListener {
             areViewsEnable(false)
             binding.pbLoader.visibility = View.VISIBLE
             presenter.login(binding.etUsername.text.toString(), binding.etPassword.text.toString())
