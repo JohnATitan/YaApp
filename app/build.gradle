@@ -60,4 +60,5 @@ dependencies {
 //    // To use Kotlin Symbolic Processing (KSP)
 //    ksp("androidx.room:room-compiler:$room_version")
 
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

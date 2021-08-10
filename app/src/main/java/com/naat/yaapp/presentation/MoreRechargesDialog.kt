@@ -12,10 +12,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.naat.yaapp.data.models.Recharge
 import com.naat.yaapp.databinding.DialogMoreRechargesBinding
 import com.naat.yaapp.presentation.adapters.RechargeItemAdapter
-import android.util.DisplayMetrics
-
-
-
 
 class MoreRechargesDialog(val recharges: List<Recharge>) : DialogFragment() {
 
