@@ -2,6 +2,7 @@ package com.naat.yaapp.domain.presenters.fragments
 
 import com.naat.yaapp.data.external.configuration.ServiceListener
 import com.naat.yaapp.data.external.services.GetRechargesService
+import com.naat.yaapp.data.internal.bd.configuration.DBInstance
 import com.naat.yaapp.data.models.Recharge
 
 class RechargePresenter {
@@ -10,6 +11,7 @@ class RechargePresenter {
         val listener = object : ServiceListener<Array<Recharge>, Boolean> {
             override fun onServiceSucceed(array: Array<Recharge>) {
                 array.size
+                DBInstance.db.getDAO().insertRecharges(array)
             }
 
             override fun onServiceFail(k: Boolean) {
