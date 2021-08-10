@@ -9,10 +9,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.naat.yaapp.data.models.Recharge
 import com.naat.yaapp.databinding.FragmentRechargeBinding
 import com.naat.yaapp.domain.presenters.fragments.RechargePresenter
+import com.naat.yaapp.presentation.MoreRechargesDialog
 import com.naat.yaapp.presentation.adapters.RechargeAdapter
+import com.naat.yaapp.presentation.adapters.listeners.RechargeListener
 import com.naat.yaapp.presentation.fragments.views.RechargeView
 
-class RechargeFragment : Fragment(), RechargeView{
+class RechargeFragment : Fragment(), RechargeView, RechargeListener{
 
     private var _binding: FragmentRechargeBinding? = null
     private val binding get() = _binding!!
@@ -52,6 +54,10 @@ class RechargeFragment : Fragment(), RechargeView{
 
     override fun showRecharges(recharges: Array<List<Recharge>>) {
         val rvRecharges = binding.rvRecharges
-        rvRecharges.adapter = RechargeAdapter(recharges)
+        rvRecharges.adapter = RechargeAdapter(recharges, this)
+    }
+
+    override fun showRechargesDialog(recharges: List<Recharge>) {
+        MoreRechargesDialog(recharges).show(childFragmentManager, "")
     }
 }
