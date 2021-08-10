@@ -1,4 +1,4 @@
-package com.naat.yaapp.presentation
+package com.naat.yaapp.presentation.dialogs
 
 import android.content.res.Resources
 import android.graphics.Color
@@ -12,8 +12,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.naat.yaapp.data.models.Recharge
 import com.naat.yaapp.databinding.DialogMoreRechargesBinding
 import com.naat.yaapp.presentation.adapters.RechargeItemAdapter
+import com.naat.yaapp.presentation.adapters.listeners.RechargeSelectedListener
 
-class MoreRechargesDialog(val recharges: List<Recharge>) : DialogFragment() {
+class MoreRechargesDialog(val recharges: List<Recharge>, val listener: RechargeSelectedListener) : DialogFragment() {
 
     private var _binding: DialogMoreRechargesBinding? = null
     private val binding get() = _binding!!
@@ -25,7 +26,7 @@ class MoreRechargesDialog(val recharges: List<Recharge>) : DialogFragment() {
         val root = binding.root
 
         binding.rv.layoutManager = GridLayoutManager(context, 3, GridLayoutManager.VERTICAL, false)
-        binding.rv.adapter = RechargeItemAdapter(recharges)
+        binding.rv.adapter = RechargeItemAdapter(recharges, listener)
 
         return root
     }

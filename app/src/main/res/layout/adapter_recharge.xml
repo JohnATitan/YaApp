@@ -92,4 +92,40 @@
         app:layout_constraintStart_toEndOf="@id/tvTwo"
         app:layout_constraintTop_toBottomOf="@id/ivOne" />
 
+    <TextView
+        android:id="@+id/tvOneValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Hola"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/tvTwo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvOne" />
+
+    <TextView
+        android:id="@+id/tvTwoValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Hola"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/tvThree"
+        app:layout_constraintStart_toEndOf="@id/tvOne"
+        app:layout_constraintTop_toBottomOf="@id/tvOne" />
+
+    <TextView
+        android:id="@+id/tvThreeValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Hola"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvTwo"
+        app:layout_constraintTop_toBottomOf="@id/tvOne" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

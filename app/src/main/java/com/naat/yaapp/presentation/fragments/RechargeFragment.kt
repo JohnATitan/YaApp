@@ -4,17 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.naat.yaapp.data.models.Recharge
 import com.naat.yaapp.databinding.FragmentRechargeBinding
 import com.naat.yaapp.domain.presenters.fragments.RechargePresenter
-import com.naat.yaapp.presentation.MoreRechargesDialog
+import com.naat.yaapp.presentation.dialogs.MoreRechargesDialog
 import com.naat.yaapp.presentation.adapters.RechargeAdapter
 import com.naat.yaapp.presentation.adapters.listeners.RechargeListener
+import com.naat.yaapp.presentation.adapters.listeners.RechargeSelectedListener
 import com.naat.yaapp.presentation.fragments.views.RechargeView
 
-class RechargeFragment : Fragment(), RechargeView, RechargeListener{
+class RechargeFragment : Fragment(), RechargeView, RechargeListener, RechargeSelectedListener {
 
     private var _binding: FragmentRechargeBinding? = null
     private val binding get() = _binding!!
@@ -54,10 +56,14 @@ class RechargeFragment : Fragment(), RechargeView, RechargeListener{
 
     override fun showRecharges(recharges: Array<List<Recharge>>) {
         val rvRecharges = binding.rvRecharges
-        rvRecharges.adapter = RechargeAdapter(recharges, this)
+        rvRecharges.adapter = RechargeAdapter(recharges, this, this)
     }
 
     override fun showRechargesDialog(recharges: List<Recharge>) {
-        MoreRechargesDialog(recharges).show(childFragmentManager, "")
+        MoreRechargesDialog(recharges, this).show(childFragmentManager, "")
+    }
+
+    override fun onSelectedRecharge(idRecharge: Long) {
+        Toast.makeText(context, "${idRecharge}", Toast.LENGTH_SHORT).show()
     }
 }
