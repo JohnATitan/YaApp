@@ -13,8 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YaApp">
         <activity
+            android:name=".presentation.activities.BuyRechargeActivity"
+            android:exported="true" />
+        <activity
             android:name=".presentation.activities.DashboardActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".presentation.activities.LoginActivity"
             android:exported="true" />

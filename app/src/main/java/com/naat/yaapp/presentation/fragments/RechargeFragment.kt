@@ -1,5 +1,6 @@
 package com.naat.yaapp.presentation.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.naat.yaapp.data.models.Recharge
 import com.naat.yaapp.databinding.FragmentRechargeBinding
 import com.naat.yaapp.domain.presenters.fragments.RechargePresenter
+import com.naat.yaapp.presentation.activities.BuyRechargeActivity
 import com.naat.yaapp.presentation.dialogs.MoreRechargesDialog
 import com.naat.yaapp.presentation.adapters.RechargeAdapter
 import com.naat.yaapp.presentation.adapters.listeners.RechargeListener
@@ -20,6 +22,8 @@ class RechargeFragment : Fragment(), RechargeView, RechargeListener, RechargeSel
 
     private var _binding: FragmentRechargeBinding? = null
     private val binding get() = _binding!!
+
+    private var moreRechargesDialog: MoreRechargesDialog? = null
 
     private lateinit var presenter: RechargePresenter
 
@@ -38,7 +42,7 @@ class RechargeFragment : Fragment(), RechargeView, RechargeListener, RechargeSel
         return root
     }
 
-    private fun initPresenter(){
+    private fun initPresenter() {
         presenter = RechargePresenter(this)
     }
 
@@ -60,10 +64,17 @@ class RechargeFragment : Fragment(), RechargeView, RechargeListener, RechargeSel
     }
 
     override fun showRechargesDialog(recharges: List<Recharge>) {
-        MoreRechargesDialog(recharges, this).show(childFragmentManager, "")
+        moreRechargesDialog = MoreRechargesDialog(recharges, this)
+        moreRechargesDialog!!.show(childFragmentManager, "")
     }
 
     override fun onSelectedRecharge(idRecharge: Long) {
-        Toast.makeText(context, "${idRecharge}", Toast.LENGTH_SHORT).show()
+        moreRechargesDialog?.let {
+            it.dismiss()
+        }
+        val buy = Intent(context, BuyRechargeActivity::class.java)
+        buy.putExtra("idRecharge", idRecharge)
+        startActivity(buy)
+        requireActivity().finish()
     }
 }

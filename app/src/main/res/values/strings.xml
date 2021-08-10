@@ -7,4 +7,7 @@
     <string name="building">En construcción</string>
     <string name="see_more">VER MÁS</string>
     <string name="select_recharge">Selecciona la recarga que requieres</string>
+    <string name="continue_button">CONTINUAR</string>
+    <string name="buy_message">VENTA DE 3.0 A 100.0 CON INCREMENTO DE 1.0</string>
+    <string name="recharge">RECARGAS</string>
 </resources>
