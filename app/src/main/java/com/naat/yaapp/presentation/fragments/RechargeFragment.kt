@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.naat.yaapp.data.models.Recharge
 import com.naat.yaapp.databinding.FragmentRechargeBinding
 import com.naat.yaapp.domain.presenters.fragments.RechargePresenter
 import com.naat.yaapp.presentation.adapters.RechargeAdapter
+import com.naat.yaapp.presentation.fragments.views.RechargeView
 
-class RechargeFragment : Fragment() {
+class RechargeFragment : Fragment(), RechargeView{
 
     private var _binding: FragmentRechargeBinding? = null
     private val binding get() = _binding!!
@@ -26,16 +28,14 @@ class RechargeFragment : Fragment() {
         _binding = FragmentRechargeBinding.inflate(inflater, container, false)
         val root = binding.root
 
-        val rvRecharges = binding.rvRecharges
-        rvRecharges.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        rvRecharges.adapter = RechargeAdapter()
+        binding.rvRecharges.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        presenter.getRecharges()
 
         return root
     }
 
     private fun initPresenter(){
-        presenter = RechargePresenter()
-        presenter.getRecharges()
+        presenter = RechargePresenter(this)
     }
 
     companion object {
@@ -48,5 +48,10 @@ class RechargeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun showRecharges(recharges: Array<List<Recharge>>) {
+        val rvRecharges = binding.rvRecharges
+        rvRecharges.adapter = RechargeAdapter(recharges)
     }
 }
