@@ -11,5 +11,6 @@
     <color name="main_blue">#489EDC</color>
     <color name="secondary_blue">#3171AA</color>
     <color name="background">#1D2831</color>
+    <color name="secondary_background">#2E3842</color>
     <color name="transparent">#00000000</color>
 </resources>

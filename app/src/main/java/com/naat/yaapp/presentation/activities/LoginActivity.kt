@@ -1,5 +1,6 @@
 package com.naat.yaapp.presentation.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -7,7 +8,7 @@ import android.widget.Toast
 import com.naat.yaapp.BuildConfig
 import com.naat.yaapp.R
 import com.naat.yaapp.databinding.ActivityLoginBinding
-import com.naat.yaapp.domain.presenters.LoginPresenter
+import com.naat.yaapp.domain.presenters.activities.LoginPresenter
 import com.naat.yaapp.presentation.activities.views.LoginView
 
 class LoginActivity : AppCompatActivity(), LoginView {
@@ -33,7 +34,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
     }
 
     private fun initListeners() {
-        binding.btnLogin.setOnClickListener { button ->
+        binding.btnLogin.setOnClickListener {
             areViewsEnable(false)
             binding.pbLoader.visibility = View.VISIBLE
             presenter.login(binding.etUsername.text.toString(), binding.etPassword.text.toString())
@@ -45,7 +46,9 @@ class LoginActivity : AppCompatActivity(), LoginView {
     }
 
     override fun loginSucceed() {
-        Toast.makeText(this, "Si se pudo!?", Toast.LENGTH_SHORT).show()
+        val dashboard = Intent(this, DashboardActivity::class.java)
+        startActivity(dashboard)
+        finish()
     }
 
     override fun loginFailed(message: String) {

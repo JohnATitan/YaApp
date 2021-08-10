@@ -4,4 +4,7 @@
     <string name="password">Contraseña</string>
     <string name="login">INICIAR SESIÓN</string>
     <string name="valid_digits">abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890¿?¡!"#$%/()-_.:,;[]{}+*@</string>
+    <string name="building">En construcción</string>
+    <string name="see_more">VER MÁS</string>
+    <string name="select_recharge">Selecciona la recarga que requieres</string>
 </resources>

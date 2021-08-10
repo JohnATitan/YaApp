@@ -1,4 +1,4 @@
-package com.naat.yaapp.domain.presenters
+package com.naat.yaapp.domain.presenters.activities
 
 import android.content.Context
 import com.naat.yaapp.data.external.configuration.ServiceListener
