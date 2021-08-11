@@ -27,6 +27,7 @@ class RechargeFragment : Fragment(), RechargeView, RechargeListener, RechargeSel
     private var moreRechargesDialog: MoreRechargesDialog? = null
 
     private lateinit var presenter: RechargePresenter
+    private lateinit var adapter: RechargeAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,13 +39,24 @@ class RechargeFragment : Fragment(), RechargeView, RechargeListener, RechargeSel
         val root = binding.root
 
         binding.rvRecharges.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        presenter.getRecharges()
-
+        initValues()
+        initListeners()
         return root
     }
 
     private fun initPresenter() {
         presenter = RechargePresenter(this)
+    }
+
+    private fun initValues() {
+        adapter = RechargeAdapter(this, this)
+        presenter.getRecharges()
+    }
+
+    private fun initListeners() {
+        binding.fbSearch.setOnClickListener {
+            adapter.filterCompany(binding.etSearch.text.toString())
+        }
     }
 
     companion object {
@@ -60,8 +72,8 @@ class RechargeFragment : Fragment(), RechargeView, RechargeListener, RechargeSel
     }
 
     override fun showRecharges(recharges: Array<List<Recharge>>) {
-        val rvRecharges = binding.rvRecharges
-        rvRecharges.adapter = RechargeAdapter(recharges, this, this)
+        adapter.recharges = recharges
+        binding.rvRecharges.adapter = adapter
     }
 
     override fun showRechargesDialog(recharges: List<Recharge>) {
@@ -77,5 +89,9 @@ class RechargeFragment : Fragment(), RechargeView, RechargeListener, RechargeSel
         buy.putExtra(Constant.ID_RECHARGE, idRecharge)
         startActivity(buy)
         requireActivity().finish()
+    }
+
+    override fun showFailFilterMessage(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 }

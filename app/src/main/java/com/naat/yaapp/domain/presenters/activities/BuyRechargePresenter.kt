@@ -1,4 +1,4 @@
-package com.naat.yaapp.domain.presenters
+package com.naat.yaapp.domain.presenters.activities
 
 import com.naat.yaapp.data.internal.bd.configuration.DBInstance
 import com.naat.yaapp.data.models.Recharge

@@ -12,7 +12,14 @@ import com.naat.yaapp.presentation.adapters.listeners.RechargeListener
 import com.naat.yaapp.presentation.adapters.listeners.RechargeSelectedListener
 import com.squareup.picasso.Picasso
 
-class RechargeAdapter(val recharges: Array<List<Recharge>>, val listener: RechargeListener, val onSelectedListener: RechargeSelectedListener) : RecyclerView.Adapter<RechargeAdapter.ViewHolder>() {
+class RechargeAdapter(val listener: RechargeListener, val onSelectedListener: RechargeSelectedListener) : RecyclerView.Adapter<RechargeAdapter.ViewHolder>() {
+
+    var auxRecharges: Array<List<Recharge>>? = null
+    var recharges: Array<List<Recharge>>? = null
+        set(value) {
+            field = value
+            auxRecharges = value
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val root = LayoutInflater.from(parent.context).inflate(R.layout.adapter_recharge, parent, false)
@@ -20,11 +27,35 @@ class RechargeAdapter(val recharges: Array<List<Recharge>>, val listener: Rechar
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(recharges[position])
+        holder.bind(auxRecharges!![position])
     }
 
     override fun getItemCount(): Int {
-        return recharges.size
+        return auxRecharges?.size ?: 0
+    }
+
+    fun filterCompany(companyName: String) {
+        val list = mutableListOf<List<Recharge>>()
+
+        if (companyName.isEmpty()) {
+            listener.showFailFilterMessage("Se requieren un parametro de busqueda")
+            list.addAll(recharges!!.asList())
+        } else {
+            recharges!!.forEach {
+                if (companyName.lowercase().equals(it[0].companyName.lowercase())) {
+                    list.add(it)
+                    return@forEach
+                }
+            }
+
+            if (list.isEmpty()) {
+                list.addAll(recharges!!.asList())
+                listener.showFailFilterMessage("No se encontro ninguna compañia")
+            }
+        }
+
+        auxRecharges = list.toTypedArray()
+        notifyDataSetChanged()
     }
 
 
