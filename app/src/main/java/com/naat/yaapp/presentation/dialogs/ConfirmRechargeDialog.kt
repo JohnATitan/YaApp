@@ -8,27 +8,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.recyclerview.widget.GridLayoutManager
 import com.naat.yaapp.data.models.Recharge
-import com.naat.yaapp.databinding.DialogCoonfirmRechargeBinding
-import com.naat.yaapp.databinding.DialogMoreRechargesBinding
+import com.naat.yaapp.databinding.DialogConfirmRechargeBinding
 import com.naat.yaapp.domain.utils.Constant
-import com.naat.yaapp.presentation.adapters.RechargeItemAdapter
-import com.naat.yaapp.presentation.adapters.listeners.RechargeSelectedListener
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class ConfirmRechargeDialog(val recharge: Recharge) : DialogFragment() {
 
-    private var _binding: DialogCoonfirmRechargeBinding? = null
+    private var _binding: DialogConfirmRechargeBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
 
-        _binding = DialogCoonfirmRechargeBinding.inflate(inflater, container, false)
+        _binding = DialogConfirmRechargeBinding.inflate(inflater, container, false)
         val root = binding.root
 
         var pattern = "HH:mm:ss"
