@@ -11,11 +11,12 @@ import androidx.fragment.app.DialogFragment
 import com.naat.yaapp.data.models.Recharge
 import com.naat.yaapp.databinding.DialogConfirmRechargeBinding
 import com.naat.yaapp.domain.utils.Constant
+import com.naat.yaapp.presentation.dialogs.listeners.ConfirmRechargeListener
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ConfirmRechargeDialog(val recharge: Recharge) : DialogFragment() {
+class ConfirmRechargeDialog(val recharge: Recharge, val number: String, val listener: ConfirmRechargeListener) : DialogFragment() {
 
     private var _binding: DialogConfirmRechargeBinding? = null
     private val binding get() = _binding!!
@@ -25,7 +26,12 @@ class ConfirmRechargeDialog(val recharge: Recharge) : DialogFragment() {
 
         _binding = DialogConfirmRechargeBinding.inflate(inflater, container, false)
         val root = binding.root
+        initValues()
+        initListeners()
+        return root
+    }
 
+    private fun initValues() {
         var pattern = "HH:mm:ss"
         var simpleDateFormat = SimpleDateFormat(pattern)
         val date: String = simpleDateFormat.format(Date())
@@ -40,9 +46,18 @@ class ConfirmRechargeDialog(val recharge: Recharge) : DialogFragment() {
             tvValue.text = "$${recharge.price}"
             tvHour.text = date
             tvDate.text = date2.replace(".", "")
+            tvNumber.text = number
         }
+    }
 
-        return root
+    private fun initListeners() {
+        binding.btnCancel.setOnClickListener {
+            dismiss()
+        }
+        binding.btnAccept.setOnClickListener {
+            dismiss()
+            listener.onConfirmRecharge()
+        }
     }
 
     override fun onResume() {

@@ -10,8 +10,16 @@ class BuyRechargePresenter(val idRecharge: Long, val view: BuyRechargeView) {
         DBInstance.getDao().selectRecharge(idRecharge)
     }
 
-    fun getRecharge(){
+    fun getRecharge() {
         view.showRecharge(recharge)
+    }
+
+    fun validNumber(number: String) {
+        if (number.isEmpty() || number.length < 10) {
+            view.showErrorNumber()
+        } else {
+            view.showConfirmDialog()
+        }
     }
 
 }

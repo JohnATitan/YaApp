@@ -8,24 +8,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.naat.yaapp.data.models.Recharge
 import com.naat.yaapp.databinding.DialogDoneRechargeBinding
-import com.squareup.picasso.Picasso
-import java.text.SimpleDateFormat
-import java.util.*
+import com.naat.yaapp.presentation.dialogs.listeners.DoneRechargeListener
 
-class DoneRechargeDialog() : DialogFragment() {
+class DoneRechargeDialog(val listener: DoneRechargeListener) : DialogFragment() {
 
     private var _binding: DialogDoneRechargeBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
-
+        isCancelable = false
         _binding = DialogDoneRechargeBinding.inflate(inflater, container, false)
         val root = binding.root
-
+        initListeners()
         return root
+    }
+
+    private fun initListeners() {
+        binding.btnAccept.setOnClickListener {
+            dismiss()
+            listener.onfinishRecharge()
+        }
     }
 
     override fun onResume() {
