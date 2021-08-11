@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/min_margin">
+
+    <TextView
+        android:id="@+id/tvCompany"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/min_margin"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tvMore"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvMore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/min_margin"
+        android:text="@string/see_more"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvCompany"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivOne"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_claro"
+        app:layout_constraintEnd_toStartOf="@id/ivTwo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCompany" />
+
+    <ImageView
+        android:id="@+id/ivTwo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_tuenti"
+        app:layout_constraintEnd_toStartOf="@id/ivThree"
+        app:layout_constraintStart_toEndOf="@id/ivOne"
+        app:layout_constraintTop_toBottomOf="@id/tvCompany" />
+
+    <ImageView
+        android:id="@+id/ivThree"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_entel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivTwo"
+        app:layout_constraintTop_toBottomOf="@id/tvCompany" />
+
+    <TextView
+        android:id="@+id/tvOne"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Hola"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/tvTwo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivOne" />
+
+    <TextView
+        android:id="@+id/tvTwo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Hola"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/tvThree"
+        app:layout_constraintStart_toEndOf="@id/tvOne"
+        app:layout_constraintTop_toBottomOf="@id/ivOne" />
+
+    <TextView
+        android:id="@+id/tvThree"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Hola"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvTwo"
+        app:layout_constraintTop_toBottomOf="@id/ivOne" />
+
+    <TextView
+        android:id="@+id/tvOneValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Hola"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/tvTwo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvOne" />
+
+    <TextView
+        android:id="@+id/tvTwoValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Hola"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/tvThree"
+        app:layout_constraintStart_toEndOf="@id/tvOne"
+        app:layout_constraintTop_toBottomOf="@id/tvOne" />
+
+    <TextView
+        android:id="@+id/tvThreeValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Hola"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvTwo"
+        app:layout_constraintTop_toBottomOf="@id/tvOne" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
