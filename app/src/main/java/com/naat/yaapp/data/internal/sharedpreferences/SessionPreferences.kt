@@ -25,7 +25,11 @@ object SessionPreferences {
             putString(JTI, userSession.jti)
             commit()
         }
+    }
 
+    fun existUser(context: Context): Boolean? {
+        val user = context.getSharedPreferences(USER, Context.MODE_PRIVATE)
+        return user.getString(USER, "")?.isNotEmpty()
     }
 
 }
