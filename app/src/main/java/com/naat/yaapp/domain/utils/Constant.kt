@@ -6,6 +6,8 @@ class Constant {
     companion object {
         const val TIME: String = "Tiempo aire"
         const val MEGAS: String = "Megas"
+
+        const val ID_RECHARGE: String = "idRecharge"
     }
 
 }

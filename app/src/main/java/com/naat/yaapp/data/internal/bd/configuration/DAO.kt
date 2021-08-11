@@ -15,4 +15,7 @@ interface DAO {
 
     @Query("SELECT companyName FROM Recharge GROUP BY companyName")
     fun selectCompanyRecharges(): Array<String>
+
+    @Query("SELECT * FROM Recharge WHERE idRecharge = :idRecharge")
+    fun selectRecharge(idRecharge: Long): Recharge
 }
