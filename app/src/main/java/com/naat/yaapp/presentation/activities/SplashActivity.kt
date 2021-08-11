@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.naat.yaapp.R
+import com.naat.yaapp.data.internal.sharedpreferences.SessionPreferences
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,8 +19,13 @@ class SplashActivity : AppCompatActivity() {
         super.onResume()
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val login = Intent(this, LoginActivity::class.java)
-            startActivity(login)
+            var intent: Intent? = null
+            if (SessionPreferences.existUser(this)!!) {
+                intent = Intent(this, LoginActivity::class.java)
+            } else {
+                intent = Intent(this, DashboardActivity::class.java)
+            }
+            startActivity(intent)
             finish()
         }, 2000)
     }
