@@ -8,6 +8,7 @@ import com.naat.yaapp.databinding.ActivityBuyRechargeBinding
 import com.naat.yaapp.domain.presenters.BuyRechargePresenter
 import com.naat.yaapp.domain.utils.Constant
 import com.naat.yaapp.presentation.activities.views.BuyRechargeView
+import com.naat.yaapp.presentation.dialogs.ConfirmRechargeDialog
 import com.squareup.picasso.Picasso
 
 class BuyRechargeActivity : AppCompatActivity(), BuyRechargeView {
@@ -34,6 +35,9 @@ class BuyRechargeActivity : AppCompatActivity(), BuyRechargeView {
     }
 
     private fun initListener() {
+        binding.btnContinue.setOnClickListener {
+            ConfirmRechargeDialog(presenter.recharge).show(supportFragmentManager, "")
+        }
     }
 
     private fun initValues() {
