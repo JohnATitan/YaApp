@@ -1,5 +1,8 @@
 package com.naat.yaapp.domain.presenters.fragments
 
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.messaging.FirebaseMessaging
 import com.naat.yaapp.data.external.configuration.ServiceListener
 import com.naat.yaapp.data.external.services.GetRechargesService
 import com.naat.yaapp.data.internal.bd.configuration.DBInstance
@@ -30,7 +33,7 @@ class RechargePresenter(val view: RechargeView) {
         GetRechargesService(listener).callService()
     }
 
-    private fun buildRechargeArray(recharges: Array<Recharge>){
+    private fun buildRechargeArray(recharges: Array<Recharge>) {
         val array = arrayOf(
             recharges.filter { it.companyName.equals("Claro") },
             recharges.filter { it.companyName.equals("Entel") },
@@ -38,5 +41,26 @@ class RechargePresenter(val view: RechargeView) {
         )
         view.showRecharges(array)
     }
+
+     fun isFirebase(f: FirebaseMessaging) {
+//        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener {
+//            if(it.isSuccessful){
+//                it.result.toString()
+//                view.showRecharges(arrayOf(listOf()))
+//            }
+//        })
+
+         val onComplete = object : OnCompleteListener<String> {
+             override fun onComplete(p0: Task<String>) {
+                 p0.result.toString()
+                 view.showRecharges(arrayOf(listOf()))
+             }
+         }
+
+        f.token.addOnCompleteListener(onComplete)
+    }
+
+
+
 
 }
